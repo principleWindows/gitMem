@@ -4,6 +4,8 @@ For English version please [switch to the English version](readme.md)
 
 [^_^]:
 https://github.com/principleWindows/gitMem
+
+[^_^]:
 https://gitee.com/principlewindows/gitMem
 
 **********************************
