@@ -195,7 +195,7 @@ Submodule path 'DbConnector': checked out 'c3f01dc8862123d317dd46284b05b6892c7b2
 
 如果想要在子模块中查看新工作，可以进入到目录中运行 git fetch 与 git merge，合并上游分支来更新本地代码。
 
-```git
+```shell
 $ git fetch
 From https://github.com/chaconinc/DbConnector
    c3f01dc..d0354fc  master     -> origin/master
@@ -210,7 +210,7 @@ Fast-forward
 如果你不想每次运行 git diff 时都输入 --submodle，那么可以将 diff.submodule 
 设置为 “log” 来将其作为默认行为。
 
-```git
+```shell
 $ git config --global diff.submodule log
 $ git diff
 Submodule DbConnector c3f01dc..d0354fc:
@@ -222,7 +222,7 @@ Submodule DbConnector c3f01dc..d0354fc:
 如果你不想在子目录中手动抓取与合并，那么还有种更容易的方式。 运行 git submodule update --remote，
 Git 将会进入子模块然后抓取并更新。
 
-```git
+```shell
 $ git submodule update --remote DbConnector
 remote: Counting objects: 4, done.
 remote: Compressing objects: 100% (2/2), done.
@@ -238,7 +238,7 @@ Submodule path 'DbConnector': checked out 'd0354fc054692d3906c85c3af05ddce39a1c0
 文件中设置（这样其他人也可以跟踪它），也可以只在本地的 .git/config 文件中设置。 
 让我们在 .gitmodules 文件中设置它：
 
-```git
+```shell
 $ git config -f .gitmodules submodule.DbConnector.branch stable
 
 $ git submodule update --remote
@@ -255,7 +255,7 @@ Submodule path 'DbConnector': checked out 'c87d55d4c6d4b05ee34fbc8cb6f7bf4585ae6
 
 这时我们运行 `git status`，Git 会显示子模块中有“新提交”。
 
-```git
+```shell
 $ git status
 On branch master
 Your branch is up-to-date with 'origin/master'.
@@ -271,7 +271,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
 如果你设置了配置选项 status.submodulesummary，Git 也会显示你的子模块的更改摘要：
 
-```git
+```shell
 $ git config status.submodulesummary 1
 
 $ git status
@@ -293,7 +293,7 @@ Submodules changed but not updated:
 这时如果运行 `git diff`，可以看到我们修改了 .gitmodules 文件，
 同时还有几个已拉取的提交需要提交到我们自己的子模块项目中。
 
-```git
+```shell
 $ git diff
 diff --git a/.gitmodules b/.gitmodules
 index 6fc0b3d..fd1cc29 100644
@@ -313,7 +313,7 @@ index 6fc0b3d..fd1cc29 100644
 这非常有趣，因为我们可以直接看到将要提交到子模块中的提交日志。 提交之后，
 你也可以运行 `git log -p` 查看这个信息。
 
-```git
+```shell
 $ git log -p --submodule
 commit 0a24cfc121a8a3c118e0105ae4ae4c00281cf7ae
 Author: Scott Chacon <schacon@gmail.com>
@@ -343,7 +343,7 @@ Submodule DbConnector c3f01dc..c87d55d:
 
 现在，让我们站在协作者的视角，他有自己的 MainProject 仓库的本地克隆， 只是执行 git pull 获取你新提交的更改还不够：
 
-```git
+```shell
 $ git pull
 From https://github.com/chaconinc/MainProject
    fb9093c..0a24cfc  master     -> origin/master
@@ -380,7 +380,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 此外，左边的尖括号（<）指出了新的提交，表示这些提交已在 MainProject 中记录，
 但尚未在本地的 `DbConnector` 中检出。 为了完成更新，你需要运行 `git submodule update`：
 
-```git
+```shell
 $ git submodule update --init --recursive
 Submodule path 'vendor/plugins/demo': checked out '48679c6302815f6c76f1fe30625d795d9e55fc56'
 
@@ -405,7 +405,7 @@ nothing to commit, working tree clean
 `git pull --recurse-submodules` 或 `git submodule update` 就会失败。 为了补救，
 `git submodule sync` 命令需要：
 
-```git
+```shell
 # 将新的 URL 复制到本地配置中
 $ git submodule sync --recursive
 # 从新 URL 更新子模块
@@ -431,7 +431,7 @@ $ git submodule update --init --recursive
 
 首先，让我们进入子模块目录然后检出一个分支。
 
-```git
+```shell
 $ cd DbConnector/
 $ git checkout stable
 Switched to branch 'stable'
@@ -440,7 +440,7 @@ Switched to branch 'stable'
 然后尝试用 “merge” 选项来更新子模块。 为了手动指定它，我们只需给 `update` 添加 `--merge` 选项即可。
 这时我们将会看到服务器上的这个子模块有一个改动并且它被合并了进来。
 
-```git
+```shell
 $ cd ..
 $ git submodule update --remote --merge
 remote: Counting objects: 4, done.
@@ -459,7 +459,7 @@ Submodule path 'DbConnector': merged in '92c7337b30ef9e0893e758dac2459d07362ab5e
 如果我们进入 DbConnector 目录，可以发现新的改动已经合并入本地 `stable` 分支。
 现在让我们看看当我们对库做一些本地的改动而同时其他人推送另外一个修改到上游时会发生什么。
 
-```git
+```shell
 $ cd DbConnector/
 $ vim src/db.c
 $ git commit -am 'unicode support'
@@ -468,7 +468,7 @@ $ git commit -am 'unicode support'
 ```
 如果我们现在更新子模块，就会看到当我们在本地做了更改时上游也有一个改动，我们需要将它并入本地。
 
-```git
+```shell
 $ cd ..
 $ git submodule update --remote --rebase
 First, rewinding head to replay your work on top of it...
@@ -478,7 +478,7 @@ Submodule path 'DbConnector': rebased into '5d60ef9bbebf5a0c1c1050f242ceeb54ad58
 如果你忘记 `--rebase` 或 `--merge`，Git 会将子模块更新为服务器上的状态。
 并且会将项目重置为一个游离的 HEAD 状态。
 
-```git
+```shell
 $ git submodule update --remote
 Submodule path 'DbConnector': checked out '5d60ef9bbebf5a0c1c1050f242ceeb54ad58da94'
 ```
@@ -488,7 +488,7 @@ Submodule path 'DbConnector': checked out '5d60ef9bbebf5a0c1c1050f242ceeb54ad58d
 如果你没有提交子模块的改动，那么运行一个子模块更新也不会出现问题，
 此时 Git 会只抓取更改而并不会覆盖子模块目录中未保存的工作。
 
-```git
+```shell
 $ git submodule update --remote
 remote: Counting objects: 4, done.
 remote: Compressing objects: 100% (3/3), done.
@@ -504,7 +504,7 @@ Unable to checkout 'c75e92a2b3855c9e5b66f915308390d9db204aca' in submodule path 
 ```
 如果你做了一些与上游改动冲突的改动，当运行更新时 Git 会让你知道。
 
-```git
+```shell
 $ git submodule update --remote --merge
 Auto-merging scripts/setup.sh
 CONFLICT (content): Merge conflict in scripts/setup.sh
@@ -519,7 +519,7 @@ Unable to merge 'c75e92a2b3855c9e5b66f915308390d9db204aca' in submodule path 'Db
 现在我们的子模块目录中有一些改动。 其中有一些是我们通过更新从上游引入的，而另一些是本地生成的，
 由于我们还没有推送它们，所以对任何其他人都不可用。
 
-```git
+```shell
 $ git diff
 Submodule DbConnector c87d55d..82d2ad3:
   > Merge from origin/stable
@@ -535,7 +535,7 @@ Submodule DbConnector c87d55d..82d2ad3:
 `git push` 命令接受可以设置为 “check” 或 “on-demand” 的 `--recurse-submodules` 参数。 
 如果任何提交的子模块改动没有推送那么 “check” 选项会直接使 `push` 操作失败。
 
-```git
+```shell
 $ git push --recurse-submodules=check
 The following submodule paths contain changes that can
 not be found on any remote:
@@ -558,7 +558,7 @@ to push them to a remote.
 
 另一个选项是使用 “on-demand” 值，它会尝试为你这样做。
 
-```git
+```shell
 $ git push --recurse-submodules=on-demand
 Pushing submodule 'DbConnector'
 Counting objects: 9, done.
@@ -588,7 +588,7 @@ To https://github.com/chaconinc/MainProject
 
 不过，Git 甚至不会尝试去进行一次简单的合并。 如果子模块提交已经分叉且需要合并，那你会得到类似下面的信息：
 
-```git
+```shell
 $ git pull
 remote: Counting objects: 2, done.
 remote: Compressing objects: 100% (1/1), done.
@@ -610,7 +610,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 甚至连两边提交历史中的 `SHA-1` 值都没有。 幸运的是，这很容易解决。 如果你运行 git diff，
 就会得到试图合并的两个分支中记录的提交的 SHA-1 值。
 
-```git
+```shell
 $ git diff
 diff --cc DbConnector
 index eb41d76,c771610..0000000
@@ -626,7 +626,7 @@ index eb41d76,c771610..0000000
 
 所以，我们将会进入子模块目录，基于 `git diff` 的第二个 SHA-1 创建一个分支然后手动合并。
 
-```git
+```shell
 $ cd DbConnector
 
 $ git rev-parse HEAD
@@ -641,7 +641,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 ```
 我们在这儿得到了一个真正的合并冲突，所以如果想要解决并提交它，那么只需简单地通过结果来更新主项目。
 
-```git
+```shell
 $ vim src/main.c (1)
 $ git add src/main.c
 $ git commit -am 'merged our changes'
@@ -681,7 +681,7 @@ $ git commit -m "Merge Tom's Changes" (5)
 
 如果它找到了一个可以接受的合并提交，你会看到类似下面的信息：
 
-```git
+```shell
 $ git merge origin/master
 warning: Failed to merge submodule DbConnector (not fast-forward)
 Found a possible merge resolution for the submodule:
@@ -699,7 +699,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 Git 建议的命令是更新索引，就像你运行了 `git add` 那样，这样会清除冲突然后提交。 不过你可能不应该这样做。
 你可以轻松地进入子模块目录，查看差异是什么，快进到这次提交，恰当地测试，然后提交它。
 
-```git
+```shell
 $ cd DbConnector/
 $ git merge 9fd905e
 Updating eb41d76..9fd905e
@@ -721,7 +721,7 @@ $ git commit -am 'Fast forwarded to a common submodule child'
 例如，假设我们想要开始开发一项新功能或者修复一些错误，并且需要在几个子模块内工作。 
 我们可以轻松地保存所有子模块的工作进度。
 
-```git
+```shell
 $ git submodule foreach 'git stash'
 Entering 'CryptoLibrary'
 No local changes to save
@@ -731,7 +731,7 @@ HEAD is now at 82d2ad3 Merge from origin/stable
 ```
 然后我们可以创建一个新分支，并将所有子模块都切换过去。
 
-```git
+```shell
 $ git submodule foreach 'git checkout -b featureA'
 Entering 'CryptoLibrary'
 Switched to a new branch 'featureA'
@@ -740,7 +740,7 @@ Switched to a new branch 'featureA'
 ```
 你应该明白。 能够生成一个主项目与所有子项目的改动的统一差异是非常有用的。
 
-```git
+```shell
 $ git diff; git submodule foreach 'git diff'
 Submodule DbConnector contains modified content
 diff --git a/src/main.c b/src/main.c
@@ -782,7 +782,7 @@ index 1aaefb6..5297645 100644
 我们在 [**Git 别名**](https://git-scm.com/book/zh/v2/ch00/_git_aliases) 介绍了设置 Git 别名， 
 但是如果你计划在 Git 中大量使用子模块的话，这里有一些例子。
 
-```git
+```shell
 $ git config alias.sdiff '!'"git diff && git submodule foreach 'git diff'"
 $ git config alias.spush 'push --recurse-submodules=on-demand'
 $ git config alias.supdate 'submodule update --remote --merge'
@@ -796,7 +796,7 @@ $ git config alias.supdate 'submodule update --remote --merge'
 例如，使用 Git 2.13 以前的版本时，在有子模块的项目中切换分支可能会造成麻烦。 如果你创建一个新分支，
 在其中添加一个子模块，之后切换到没有该子模块的分支上时，你仍然会有一个还未跟踪的子模块目录。
 
-```git
+```shell
 $ git --version
 git version 2.12.2
 
@@ -831,7 +831,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 移除那个目录并不困难，但是有一个目录在那儿会让人有一点困惑。 如果你移除它然后切换回有那个子模块的分支，
 需要运行 `submodule update --init` 来重新建立和填充。
 
-```git
+```shell
 $ git clean -fdx
 Removing CryptoLibrary/
 
@@ -851,7 +851,7 @@ Makefile	includes	scripts		src
 新版的 Git（>= 2.13）通过为 `git checkout` 命令添加 `--recurse-submodules` 选项简化了所有这些步骤，
 它能为了我们要切换到的分支让子模块处于的正确状态。
 
-```git
+```shell
 $ git --version
 git version 2.13.3
 
@@ -895,14 +895,14 @@ nothing to commit, working tree clean
 然后想要将它们移动到一个子模块中，那么请务必小心，否则 Git 会对你发脾气。 假设项目内有一些文件在子目录中，
 你想要将其转换为一个子模块。 如果删除子目录然后运行 `submodule add`，Git 会朝你大喊：
 
-```git
+```shell
 $ rm -Rf CryptoLibrary/
 $ git submodule add https://github.com/chaconinc/CryptoLibrary
 'CryptoLibrary' already exists in the index
 ```
 你必须要先取消暂存 CryptoLibrary 目录。 然后才可以添加子模块：
 
-```git
+```shell
 $ git rm -r CryptoLibrary
 $ git submodule add https://github.com/chaconinc/CryptoLibrary
 Cloning into 'CryptoLibrary'...
@@ -915,7 +915,7 @@ Checking connectivity... done.
 现在假设你在一个分支下做了这样的工作。
 如果尝试切换回的分支中那些文件还在子目录而非子模块中时——你会得到这个错误：
 
-```git
+```shell
 $ git checkout master
 error: The following untracked working tree files would be overwritten by checkout:
   CryptoLibrary/Makefile
@@ -926,7 +926,7 @@ Aborting
 ```
 你可以通过 `checkout -f` 来强制切换，但是要小心，如果其中还有未保存的修改，这个命令会把它们覆盖掉。
 
-```git
+```shell
 $ git checkout -f master
 warning: unable to rmdir CryptoLibrary: Directory not empty
 Switched to branch 'master'
