@@ -9,6 +9,13 @@ https://pages.github.com/
 [^_^]:
 https://stackoverflow.com/questions/7212290/how-can-i-commit-specific-directory-to-a-different-than-a-working-branch-on-git
 
+[Configuring a publishing source for your GitHub Pages site](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+
+<https://github.github.com/gfm/>
+
+gh-pages 不显示主页的原因：
+1. package.json 文件里 homepage 设置 https://your-git-user-name.github.com/your-git-name
+
 *****************************
 
 GitHub Pages是一个静态站点托管服务，可直接从GitHub上的存储库获取HTML，
