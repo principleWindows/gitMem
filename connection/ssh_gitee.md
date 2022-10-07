@@ -9,7 +9,7 @@ ___
 码云提供了基于SSH协议的Git服务，在使用SSH协议访问仓库仓库之前，
 需要先配置好账户/仓库的SSH公钥。
 
-我们使用 win10 的 **power shell** 执行如下命令来生成 sshkey:
+我们使用 win11 的 **power shell** 执行如下命令来生成 sshkey:
 
 ```c
 chcp 437

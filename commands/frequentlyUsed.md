@@ -64,6 +64,8 @@ git checkout -- test.txt                // 从版本库中恢复文件到工作区
 用 VS 对比两个文件需要使用比对工具，该工具放在 TeamFoundation 文件夹里，路径是
 D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\vsDiffMerge.exe 。
 
+D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\vsDiffMerge.exe
+
 如果从 cmd 运行这个对比工具则需要加上上述路径，如果使用 Developer PowerShell for VS 2019 
 则只需输入下面的代码：
 ```

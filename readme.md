@@ -33,10 +33,10 @@ Instructor: Professor Jicheng Hu
 
 ### 1.1 SSH Connection
 
-使用 git 工具来管理项目, 通常会使用 SSH 来连接代码仓库。win10 下如何
+使用 git 工具来管理项目, 通常会使用 SSH 来连接代码仓库。win11 下如何
 安装 SSH client 参见:
 
-[win10 安装SSH](connection/ssh_client.md)
+[win11 安装SSH](connection/ssh_client.md)
 
 
 生成并使用 ssh-key:
