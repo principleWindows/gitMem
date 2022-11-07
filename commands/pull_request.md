@@ -1,5 +1,12 @@
 # 处理 pull request 请求的相关命令
 
+- [Git的分支工作流与Pull Request](https://zhuanlan.zhihu.com/p/37281534)
+- [GitHub Pull Request入门](https://zhuanlan.zhihu.com/p/51199833)
+
+
+**********************************
+
+
 1. 建立临时分枝来保存该请求的修改，然后跳转到该临时分枝
 
 ```git

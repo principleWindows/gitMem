@@ -14,6 +14,7 @@ git push origin master:hb-dev 将本地库与服务器上的库进行关联
 git checkout --track origin/dev 切换到远程dev分支
 git branch -D master develop 删除本地库develop
 git checkout -b dev 建立一个新的本地分支dev
+git checkout -b ＜new-branch＞ ＜existing-branch＞ 从指定的 existing-branch 分支派生创建一个名为 new-branch 的新分支
 git merge origin/dev 将分支dev与当前分支进行合并
 git checkout dev 切换到本地dev分支
 git remote show 查看远程库
